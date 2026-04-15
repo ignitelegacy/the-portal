@@ -55,17 +55,12 @@
 
   .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
 
-  /* Header */
   header {
     background: var(--bg-dark);
     padding: 16px 0;
     border-bottom: 1px solid rgba(165, 133, 71, 0.15);
   }
-  .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
+  .nav { display: flex; justify-content: space-between; align-items: center; }
   .nav-brand {
     font-family: 'Editors Note', Georgia, serif;
     font-size: 18px;
@@ -87,12 +82,8 @@
     border-radius: 2px;
     transition: all 0.3s ease;
   }
-  .login-top:hover {
-    background: rgba(196, 163, 106, 0.12);
-    border-color: var(--gold-light);
-  }
+  .login-top:hover { background: rgba(196, 163, 106, 0.12); border-color: var(--gold-light); }
 
-  /* Hero */
   .hero { padding: 100px 0 80px; text-align: center; }
   .eyebrow {
     display: inline-flex;
@@ -124,64 +115,31 @@
     letter-spacing: -0.025em;
     margin-bottom: 26px;
   }
-  h1 em {
-    font-style: italic;
-    color: var(--gold);
-    font-weight: 400;
-  }
+  h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
   .hero-sub {
     font-size: 18px;
     color: var(--ink-soft);
     max-width: 560px;
     margin: 0 auto 56px;
     font-weight: 300;
-    letter-spacing: 0.005em;
   }
-  .ornament {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 14px;
-    margin: 0 auto 40px;
-    color: var(--gold);
-    opacity: 0.7;
-  }
-  .ornament::before, .ornament::after {
-    content: '';
-    width: 60px;
-    height: 1px;
-    background: currentColor;
-  }
-  .ornament svg { width: 14px; height: 14px; }
 
-  /* Video */
+  /* Video — symmetric padding all sides */
   .video-wrap {
     max-width: 940px;
     margin: 0 auto 48px;
-    background: #000;
+    background: var(--bg-dark);
     border-radius: 6px;
     overflow: hidden;
-    box-shadow:
-      0 30px 80px -25px rgba(20, 16, 10, 0.5),
-      0 0 0 1px rgba(165, 133, 71, 0.2);
-    position: relative;
-  }
-  .video-wrap::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: 6px;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(196, 163, 106, 0.4), transparent 30%, transparent 70%, rgba(196, 163, 106, 0.3));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
+    padding: 28px;
+    box-shadow: 0 30px 80px -25px rgba(20, 16, 10, 0.5), 0 0 0 1px rgba(165, 133, 71, 0.2);
   }
   .video-inner {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    overflow: hidden;
   }
   .video-inner iframe {
     position: absolute;
@@ -193,21 +151,15 @@
   }
   .video-caption {
     text-align: center;
-    padding: 16px 0 18px;
+    padding: 20px 0 4px;
     font-size: 10px;
     letter-spacing: 0.32em;
     text-transform: uppercase;
     color: rgba(243, 233, 215, 0.6);
     font-weight: 500;
-    background: var(--bg-dark);
   }
 
-  .cta-row {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
   .btn {
     display: inline-block;
     padding: 15px 32px;
@@ -238,12 +190,8 @@
   }
   .btn-outline:hover { border-color: var(--ink); background: rgba(253, 249, 241, 0.6); }
 
-  /* Tools section */
   .tools { padding: 80px 0 40px; }
-  .section-head {
-    margin-bottom: 56px;
-    text-align: center;
-  }
+  .section-head { margin-bottom: 56px; text-align: center; }
   .section-head .eyebrow { margin-bottom: 22px; }
   .section-head h2 {
     font-family: 'Editors Note', Georgia, serif;
@@ -262,12 +210,7 @@
     font-weight: 300;
   }
 
-  /* Cards */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-  }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
   @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
 
   .card {
@@ -278,7 +221,6 @@
     display: flex;
     flex-direction: column;
     transition: all 0.4s ease;
-    position: relative;
   }
   .card:hover {
     border-color: rgba(165, 133, 71, 0.35);
@@ -313,11 +255,7 @@
     line-height: 1.1;
     margin-bottom: 4px;
   }
-  .card-header .tag {
-    font-size: 12px;
-    color: var(--ink-muted);
-    letter-spacing: 0.02em;
-  }
+  .card-header .tag { font-size: 12px; color: var(--ink-muted); letter-spacing: 0.02em; }
 
   .card-body {
     padding: 44px 36px 40px;
@@ -368,104 +306,138 @@
     color: #fff;
     box-shadow: 0 6px 16px -6px rgba(165, 133, 71, 0.5);
   }
-  .card-cta.disabled {
-    color: var(--ink-muted);
-    border-color: var(--line);
-    cursor: not-allowed;
-  }
-  .card-cta.disabled:hover { background: transparent; color: var(--ink-muted); box-shadow: none; }
 
   /* Calculator */
-  .calc-body { padding: 28px; }
-  .calc-top { display: flex; gap: 12px; margin-bottom: 16px; }
-  .points {
+  .calc-body { padding: 26px; }
+  .calc-controls { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+  .points-control {
     flex: 1;
+    min-width: 160px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px 16px;
-    border: 1px solid var(--line);
-    border-radius: 6px;
     background: #fff;
-  }
-  .points button {
-    width: 26px; height: 26px;
-    border-radius: 50%;
     border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    height: 44px;
+  }
+  .points-btn {
+    width: 44px; height: 44px;
+    border: none;
     background: transparent;
-    font-size: 16px;
-    cursor: pointer;
+    font-size: 18px;
     color: var(--ink);
+    cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    line-height: 1;
-    transition: all 0.2s ease;
+    transition: background 0.15s;
+    font-family: inherit;
   }
-  .points button:hover { background: var(--bg); border-color: var(--gold); color: var(--gold); }
-  .points span { font-size: 14px; font-weight: 500; }
-  .currency {
-    padding: 10px 16px;
-    border: 1px solid var(--line);
-    border-radius: 6px;
+  .points-btn:hover { background: var(--bg); color: var(--gold); }
+  .points-display {
+    flex: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .currency-select {
+    height: 44px;
+    padding: 0 14px;
     background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 500;
     color: var(--ink);
     cursor: pointer;
-    font-family: inherit;
   }
   .tabs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 16px;
-    background: #fff;
+    display: flex;
+    gap: 4px;
+    background: var(--bg-alt);
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 18px;
   }
   .tab {
-    padding: 12px;
-    background: transparent;
+    flex: 1;
+    padding: 10px 14px;
     border: none;
+    background: transparent;
+    font-family: inherit;
     font-size: 13px;
     font-weight: 500;
     color: var(--ink-muted);
     cursor: pointer;
-    transition: all 0.2s ease;
-    font-family: inherit;
-    border-bottom: 2px solid transparent;
+    border-radius: 6px;
+    transition: all 0.2s;
   }
-  .tab.active { color: var(--ink); background: var(--bg-card); border-bottom-color: var(--gold); }
-
-  .products {
+  .tab.active {
+    background: #fff;
+    color: var(--ink);
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(20,16,10,0.06);
+  }
+  .product-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
   }
-  .product {
-    padding: 12px 14px;
-    border: 1px solid var(--line);
-    border-radius: 6px;
+  .product-card {
+    padding: 14px;
     background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
   }
-  .product:hover { border-color: var(--gold-light); }
-  .product.selected { border-color: var(--gold); background: rgba(165, 133, 71, 0.06); }
-  .product-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
-  .product-price { font-size: 12px; color: var(--ink-muted); }
-  .product-price strong { color: var(--gold); font-weight: 600; }
+  .product-card:hover { border-color: var(--gold-light); transform: translateY(-1px); }
+  .product-card.selected {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, #fffdf9, #fbf6ef);
+    box-shadow: 0 2px 10px rgba(165,133,71,0.12);
+  }
+  .product-card.selected::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+  .product-name { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .product-commission { font-size: 12px; color: var(--ink-muted); }
+  .product-commission strong { color: var(--gold); font-weight: 600; }
 
-  .total {
-    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-2) 100%);
+  .total-card {
+    background: linear-gradient(135deg, var(--bg-dark), var(--bg-dark-2));
+    border-radius: 12px;
+    padding: 24px 26px;
     color: #f3e9d7;
-    border-radius: 8px;
-    padding: 22px 24px;
     border: 1px solid rgba(165, 133, 71, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+  .total-card::before {
+    content: '';
+    position: absolute;
+    top: -60%; right: -20%;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(196,163,106,0.12), transparent 70%);
+    pointer-events: none;
   }
   .total-label {
-    font-size: 10px;
-    letter-spacing: 0.24em;
+    font-size: 11px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: rgba(196, 163, 106, 0.7);
     margin-bottom: 8px;
@@ -475,16 +447,29 @@
     font-family: 'Editors Note', Georgia, serif;
     font-size: 42px;
     line-height: 1;
-    margin-bottom: 8px;
     color: #f3e9d7;
+    margin-bottom: 4px;
   }
-  .total-hint {
-    font-size: 12px;
+  .breakdown {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(243, 233, 215, 0.1);
+  }
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 13px;
+  }
+  .breakdown-name { color: rgba(243, 233, 215, 0.7); }
+  .breakdown-amount { color: var(--gold-light); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .empty-state {
+    margin-top: 8px;
+    font-size: 13px;
     font-style: italic;
     color: rgba(243, 233, 215, 0.4);
   }
 
-  /* Elevate */
   .elevate {
     margin: 100px 0 120px;
     background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-dark-2) 100%);
@@ -508,9 +493,7 @@
     background: radial-gradient(ellipse, rgba(196, 163, 106, 0.08), transparent 60%);
     pointer-events: none;
   }
-  @media (max-width: 860px) {
-    .elevate { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; }
-  }
+  @media (max-width: 860px) { .elevate { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; } }
   .elevate-video {
     aspect-ratio: 4/3;
     background: #0a0604;
@@ -524,9 +507,7 @@
     width: 72px; height: 72px;
     border-radius: 50%;
     background: rgba(165, 133, 71, 0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
   }
@@ -545,9 +526,7 @@
     color: var(--gold-light);
     margin-bottom: 22px;
   }
-  .elevate .eyebrow::before, .elevate .eyebrow::after {
-    background: var(--gold-light);
-  }
+  .elevate .eyebrow::before, .elevate .eyebrow::after { background: var(--gold-light); }
   .elevate h2 {
     font-family: 'Editors Note', Georgia, serif;
     font-size: 52px;
@@ -562,11 +541,7 @@
     color: var(--gold-light);
     margin-bottom: 8px;
   }
-  .elevate .price-note {
-    font-size: 13px;
-    color: rgba(243, 233, 215, 0.5);
-    margin-bottom: 24px;
-  }
+  .elevate .price-note { font-size: 13px; color: rgba(243, 233, 215, 0.5); margin-bottom: 24px; }
   .elevate p.desc {
     color: rgba(243, 233, 215, 0.78);
     margin-bottom: 30px;
@@ -575,7 +550,6 @@
     font-weight: 300;
   }
 
-  /* Footer */
   footer {
     padding: 48px 0;
     border-top: 1px solid var(--line);
@@ -592,7 +566,7 @@
 <header>
   <div class="container nav">
     <div class="nav-brand">Ignite <em>Legacy</em></div>
-    <a href="https://ignitelegacy.co/" class="login-top">Login to Ignite Legacy</a>
+    <a href="https://ignitelegacy.co/" target="_blank" rel="noopener" class="login-top">Login to Ignite Legacy</a>
   </div>
 </header>
 
@@ -610,7 +584,7 @@
     </div>
 
     <div class="cta-row">
-      <a href="https://ignitelegacy.co/" class="btn btn-primary">Login to Ignite Legacy</a>
+      <a href="https://ignitelegacy.co/" target="_blank" rel="noopener" class="btn btn-primary">Login to Ignite Legacy</a>
       <a href="#tools" class="btn btn-outline">Explore Tools ↓</a>
     </div>
   </section>
@@ -637,7 +611,7 @@
           <img class="hero-img" src="assets/graphic-maker.png" alt="Ignite Legacy Graphic Maker samples" />
           <h4>Ignite Legacy Graphic Maker</h4>
           <p>Create custom welcome and celebration graphics for your team with brand-matched templates.</p>
-          <a href="https://portal.ignitelegacy.co/graphic-maker" class="card-cta">Open Graphic Maker →</a>
+          <a href="https://graphic.ignitelegacy.co/" target="_blank" rel="noopener" class="card-cta">Open Graphic Maker →</a>
         </div>
       </article>
 
@@ -652,64 +626,31 @@
           </div>
         </div>
         <div class="calc-body">
-          <div class="calc-top">
-            <div class="points">
-              <button onclick="changePoints(-1)">−</button>
-              <span id="points-display">1 point</span>
-              <button onclick="changePoints(1)">+</button>
+          <div class="calc-controls">
+            <div class="points-control">
+              <button class="points-btn" id="pts-down">−</button>
+              <div class="points-display" id="pts-display">1 point</div>
+              <button class="points-btn" id="pts-up">+</button>
             </div>
-            <select class="currency" id="currency">
+            <select class="currency-select" id="currency-select">
               <option value="USD">$ USD</option>
+              <option value="CAD">C$ CAD</option>
+              <option value="AUD">A$ AUD</option>
+              <option value="NZD">NZ$ NZD</option>
               <option value="EUR">€ EUR</option>
-              <option value="GBP">£ GBP</option>
             </select>
           </div>
           <div class="tabs">
-            <button class="tab active" onclick="switchTab(this)">Individual Products</button>
-            <button class="tab" onclick="switchTab(this)">Product Packages</button>
+            <button class="tab active" data-tab="products">Individual Products</button>
+            <button class="tab" data-tab="packages">Product Packages</button>
           </div>
-          <div class="products">
-            <div class="product" data-price="351" onclick="selectProduct(this)">
-              <div class="product-name">K8</div>
-              <div class="product-price"><strong>$351</strong> at 1pt</div>
-            </div>
-            <div class="product" data-price="195" onclick="selectProduct(this)">
-              <div class="product-name">Anespa</div>
-              <div class="product-price"><strong>$195</strong> at 1pt</div>
-            </div>
-            <div class="product" data-price="40" onclick="selectProduct(this)">
-              <div class="product-name">Ukon DD</div>
-              <div class="product-price"><strong>$40</strong> at 1pt</div>
-            </div>
-            <div class="product" data-price="115" onclick="selectProduct(this)">
-              <div class="product-name">Ukon Σ</div>
-              <div class="product-price"><strong>$115</strong> at 1pt</div>
-            </div>
-            <div class="product" data-price="290" onclick="selectProduct(this)">
-              <div class="product-name">SD501</div>
-              <div class="product-price"><strong>$290</strong> at 1pt</div>
-            </div>
-            <div class="product" data-price="420" onclick="selectProduct(this)">
-              <div class="product-name">Super 501</div>
-              <div class="product-price"><strong>$420</strong> at 1pt</div>
-            </div>
-            <div class="product" data-price="200" onclick="selectProduct(this)">
-              <div class="product-name">JRIV</div>
-              <div class="product-price"><strong>$200</strong> at 1pt</div>
-            </div>
-            <div class="product" data-price="320" onclick="selectProduct(this)">
-              <div class="product-name">SD501U</div>
-              <div class="product-price"><strong>$320</strong> at 1pt</div>
-            </div>
-            <div class="product" data-price="78" onclick="selectProduct(this)">
-              <div class="product-name">EmGuard</div>
-              <div class="product-price"><strong>$78</strong> at 1pt</div>
-            </div>
-          </div>
-          <div class="total">
+          <div class="product-grid" id="product-grid"></div>
+          <div class="total-card">
             <div class="total-label">Total Commission</div>
-            <div class="total-amount" id="total">$0</div>
-            <div class="total-hint" id="total-hint">Select products above to see breakdown</div>
+            <div class="total-amount" id="total-amount">$0</div>
+            <div id="breakdown-area">
+              <div class="empty-state">Select products above to see your breakdown</div>
+            </div>
           </div>
         </div>
       </article>
@@ -727,7 +668,7 @@
         <div class="card-body">
           <h4>The Masterclass Vault</h4>
           <p>Find a masterclass to share Ignite Legacy with your audience and prospects.</p>
-          <a href="https://www.themasterclassvault.com" class="card-cta">Open Masterclass Vault →</a>
+          <a href="https://www.themasterclassvault.com" target="_blank" rel="noopener" class="card-cta">Open Masterclass Vault →</a>
         </div>
       </article>
 
@@ -744,7 +685,7 @@
         <div class="card-body">
           <h4>The Testimonial Vault</h4>
           <p>Get inspired and use real video testimonials from the community — organized by category so you can pull them into webinars, reels, and conversations.</p>
-          <a href="https://www.thetestimonialvault.com" class="card-cta">Open Testimonial Vault →</a>
+          <a href="https://www.thetestimonialvault.com" target="_blank" rel="noopener" class="card-cta">Open Testimonial Vault →</a>
         </div>
       </article>
 
@@ -761,7 +702,24 @@
         <div class="card-body">
           <h4>The Clarity Coach Vault</h4>
           <p>Hire a clarity coach to help you refine your messaging, strategy, and next steps in your business.</p>
-          <a href="https://www.theclaritycoachvault.com" class="card-cta">Open Clarity Coach Vault →</a>
+          <a href="https://www.theclaritycoachvault.com" target="_blank" rel="noopener" class="card-cta">Open Clarity Coach Vault →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+          </div>
+          <div>
+            <h3>Paperwork Vault</h3>
+            <div class="tag">Enagic paperwork made simple</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h4>The Enagic Paperwork Vault</h4>
+          <p>Step-by-step guidance and resources to help you and your team navigate Enagic paperwork with confidence.</p>
+          <a href="https://www.thepaperworkvault.com" target="_blank" rel="noopener" class="card-cta">Open Paperwork Vault →</a>
         </div>
       </article>
     </div>
@@ -776,7 +734,7 @@
         <div class="price">+$49<span style="font-size: 18px; opacity: 0.7;">/month</span></div>
         <div class="price-note">Ignite + Elevate Studio = $98/month</div>
         <p class="desc">Your all-in-one funnel builder, email marketing, automation engine, and CRM — for resellers who want to build with systems and scale with webinars.</p>
-        <a href="https://elevatestud.io/" class="btn btn-primary">Get Started →</a>
+        <a href="https://elevatestud.io/" target="_blank" rel="noopener" class="btn btn-primary">Get Started →</a>
       </div>
     </div>
   </section>
@@ -787,43 +745,165 @@
 </footer>
 
 <script>
-  let points = 1;
-  let selected = [];
+  const DATA = {
+    USD: { symbol: "$",
+      products: [
+        { name: "K8", commissions: [351,702,1053,1404,1755,2106,2457,2808] },
+        { name: "Anespa", commissions: [195,390,585,780,975,1170,1365,1560] },
+        { name: "Ukon DD", commissions: [40,80,120,160,200,240,280,320] },
+        { name: "Ukon Σ", commissions: [115,230,345,460,575,690,805,920] },
+        { name: "SD501", commissions: [290,580,870,1160,1450,1740,2030,2320] },
+        { name: "Super 501", commissions: [420,840,1260,1680,2100,2520,2940,3360] },
+        { name: "JRIV", commissions: [200,400,600,800,1000,1200,1400,1600] },
+        { name: "SD501U", commissions: [320,640,960,1280,1600,1920,2240,2560] },
+        { name: "EmGuard", commissions: [78,156,234,312,390,468,546,624] },
+      ],
+      packages: [
+        { name: "Trifecta", commissions: [661,1322,1983,2644,3305,3966,4627,4822] },
+        { name: "Quad", commissions: [739,1478,2217,2956,3695,4434,5058,5253] },
+        { name: "Anespa Quad", commissions: [856,1712,2568,3424,4280,5136,5877,6072] },
+        { name: "K8 Quad", commissions: [1012,2024,3036,4048,5060,6072,6969,7164] },
+        { name: "The Suite", commissions: [1090,2180,3270,4360,5450,6189,6813,7008] },
+      ],
+    },
+    CAD: { symbol: "C$",
+      products: [
+        { name: "K8", commissions: [390,780,1170,1560,1950,2340,2730,3120] },
+        { name: "Anespa", commissions: [220,440,660,880,1100,1320,1540,1760] },
+        { name: "Ukon DD", commissions: [50,100,150,200,250,300,350,400] },
+        { name: "Ukon Σ", commissions: [130,260,390,520,650,780,910,1040] },
+        { name: "SD501", commissions: [330,660,990,1320,1650,1980,2310,2640] },
+        { name: "JRIV", commissions: [250,500,750,1000,1250,1500,1750,2000] },
+        { name: "Super 501", commissions: [440,880,1320,1760,2200,2640,3080,3520] },
+        { name: "EmGuard", commissions: [89,178,267,356,445,534,623,712] },
+      ],
+      packages: [
+        { name: "Trifecta", commissions: [740,1480,2220,2960,3700,4440,5180,5400] },
+        { name: "Quad", commissions: [829,1658,2487,3316,4145,4974,5673,5893] },
+        { name: "Anespa Quad", commissions: [960,1920,2880,3840,4800,5760,6590,6810] },
+        { name: "K8 Quad", commissions: [1130,2260,3390,4520,5650,6780,7780,8000] },
+        { name: "The Suite", commissions: [1219,2438,3657,4876,6095,6924,7623,7843] },
+      ],
+    },
+    AUD: { symbol: "A$",
+      products: [
+        { name: "K8", commissions: [400,800,1200,1600,2000,2400,2800,3200] },
+        { name: "Anespa", commissions: [190,380,570,760,950,1140,1330,1520] },
+        { name: "Ukon DD", commissions: [58,116,174,232,290,348,406,464] },
+        { name: "SD501", commissions: [310,620,930,1240,1550,1860,2170,2480] },
+        { name: "JRIV", commissions: [265,530,795,1060,1325,1590,1855,2120] },
+        { name: "Super 501", commissions: [440,880,1320,1760,2200,2640,3080,3520] },
+        { name: "EmGuard", commissions: [134,268,402,536,670,804,938,1072] },
+        { name: "Kangen Air", commissions: [100,200,300,400,500,600,700,800] },
+      ],
+      packages: [
+        { name: "Trifecta", commissions: [648,1296,1944,2592,3240,3888,4536,4726] },
+        { name: "Quad", commissions: [782,1564,2346,3128,3910,4692,5416,5606] },
+        { name: "Anespa Quad", commissions: [838,1676,2514,3352,4190,5028,5808,5998] },
+        { name: "K8 Quad", commissions: [1048,2096,3144,4192,5240,6288,7278,7468] },
+        { name: "The Suite", commissions: [1182,2364,3546,4728,5910,6692,7416,7606] },
+      ],
+    },
+    NZD: { symbol: "NZ$",
+      products: [
+        { name: "K8", commissions: [430,860,1290,1720,2150,2580,3010,3440] },
+        { name: "Anespa", commissions: [200,400,600,800,1000,1200,1400,1600] },
+        { name: "Ukon DD", commissions: [65,130,195,260,325,390,455,520] },
+        { name: "SD501", commissions: [333,666,999,1332,1665,1998,2331,2664] },
+        { name: "JRIV", commissions: [275,550,825,1100,1375,1650,1925,2200] },
+        { name: "Super 501", commissions: [470,940,1410,1880,2350,2820,3290,3760] },
+      ],
+      packages: [
+        { name: "Trifecta", commissions: [695,1390,2085,2780,3475,4170,4865,5065] },
+        { name: "Anespa Quad", commissions: [895,1790,2685,3580,4475,5370,6200,6400] },
+        { name: "K8 Quad", commissions: [1125,2250,3375,4500,5625,6750,7810,8010] },
+      ],
+    },
+    EUR: { symbol: "€",
+      products: [
+        { name: "K8", commissions: [285,570,855,1140,1425,1710,1995,2280] },
+        { name: "Anespa", commissions: [155,310,465,620,775,930,1085,1240] },
+        { name: "Ukon DD", commissions: [35,70,105,140,175,210,245,280] },
+        { name: "Ukon Σ", commissions: [90,180,270,360,450,540,630,720] },
+        { name: "SD501", commissions: [205,410,615,820,1025,1230,1435,1640] },
+        { name: "Super 501", commissions: [420,840,1260,1680,2100,2520,2940,3360] },
+        { name: "JRIV", commissions: [157,314,471,628,785,942,1099,1256] },
+        { name: "EmGuard", commissions: [80,160,240,320,400,480,560,640] },
+      ],
+      packages: [
+        { name: "Trifecta", commissions: [530,1060,1590,2120,2650,3180,3710,3865] },
+        { name: "Quad", commissions: [610,1220,1830,2440,3050,3660,4180,4335] },
+        { name: "Anespa Quad", commissions: [685,1370,2055,2740,3425,4110,4705,4860] },
+        { name: "K8 Quad", commissions: [815,1630,2445,3260,4075,4890,5615,5770] },
+        { name: "The Suite", commissions: [895,1790,2685,3580,4475,5085,5605,5760] },
+      ],
+    },
+  };
 
-  function changePoints(delta) {
-    points = Math.max(1, points + delta);
-    document.getElementById('points-display').textContent = points + (points === 1 ? ' point' : ' points');
-    updateTotal();
-  }
+  let state = { currency: 'USD', points: 1, tab: 'products', selected: [] };
+  const fmt = (n) => n.toLocaleString();
+  const getCommission = (item) => item.commissions[Math.min(state.points, 8) - 1];
 
-  function selectProduct(el) {
-    el.classList.toggle('selected');
-    const price = parseFloat(el.dataset.price);
-    if (el.classList.contains('selected')) {
-      selected.push(price);
+  function render() {
+    const cur = DATA[state.currency];
+    const items = state.tab === 'products' ? cur.products : cur.packages;
+    document.getElementById('pts-display').textContent = state.points + (state.points === 1 ? ' point' : ' points');
+
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = items.map(item => {
+      const isSel = state.selected.some(s => s.name === item.name);
+      return `<div class="product-card ${isSel ? 'selected' : ''}" data-name="${item.name}"><div class="product-name">${item.name}</div><div class="product-commission"><strong>${cur.symbol}${fmt(getCommission(item))}</strong> at ${state.points}pt</div></div>`;
+    }).join('');
+
+    grid.querySelectorAll('.product-card').forEach(el => {
+      el.addEventListener('click', () => {
+        const name = el.dataset.name;
+        const item = items.find(i => i.name === name);
+        const idx = state.selected.findIndex(s => s.name === name);
+        if (idx > -1) state.selected.splice(idx, 1);
+        else state.selected.push(item);
+        render();
+      });
+    });
+
+    const allItems = [...cur.products, ...cur.packages];
+    const total = state.selected.reduce((sum, i) => {
+      const fresh = allItems.find(p => p.name === i.name);
+      return sum + (fresh ? getCommission(fresh) : 0);
+    }, 0);
+    document.getElementById('total-amount').textContent = cur.symbol + fmt(total);
+
+    const area = document.getElementById('breakdown-area');
+    if (state.selected.length === 0) {
+      area.innerHTML = '<div class="empty-state">Select products above to see your breakdown</div>';
     } else {
-      const i = selected.indexOf(price);
-      if (i > -1) selected.splice(i, 1);
+      area.innerHTML = '<div class="breakdown">' + state.selected.map(i => {
+        const fresh = allItems.find(p => p.name === i.name);
+        const amt = fresh ? getCommission(fresh) : 0;
+        return `<div class="breakdown-row"><span class="breakdown-name">${i.name}</span><span class="breakdown-amount">${cur.symbol}${fmt(amt)}</span></div>`;
+      }).join('') + '</div>';
     }
-    updateTotal();
   }
 
-  function updateTotal() {
-    const sum = selected.reduce((a, b) => a + b, 0) * points;
-    const cur = document.getElementById('currency').value;
-    const symbol = cur === 'EUR' ? '€' : cur === 'GBP' ? '£' : '$';
-    document.getElementById('total').textContent = symbol + sum.toLocaleString();
-    document.getElementById('total-hint').textContent = selected.length === 0
-      ? 'Select products above to see breakdown'
-      : selected.length + ' product' + (selected.length === 1 ? '' : 's') + ' selected';
-  }
+  document.getElementById('pts-down').addEventListener('click', () => { state.points = Math.max(1, state.points - 1); render(); });
+  document.getElementById('pts-up').addEventListener('click', () => { state.points = Math.min(8, state.points + 1); render(); });
+  document.getElementById('currency-select').addEventListener('change', (e) => {
+    state.currency = e.target.value;
+    const cur = DATA[state.currency];
+    const names = [...cur.products, ...cur.packages].map(p => p.name);
+    state.selected = state.selected.filter(s => names.includes(s.name));
+    render();
+  });
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      btn.classList.add('active');
+      state.tab = btn.dataset.tab;
+      render();
+    });
+  });
 
-  function switchTab(btn) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    btn.classList.add('active');
-  }
-
-  document.getElementById('currency').addEventListener('change', updateTotal);
+  render();
 </script>
 
 </body>
