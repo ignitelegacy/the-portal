@@ -1,245 +1,704 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ignite Legacy — Reseller's Portal</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-@font-face { font-family:'EditorsNote'; src:url('https://assets.cdn.filesafe.space/wcJWrJ0LKUsg51VQbi8P/media/69c6ee722e89d817b2599f76.ttf') format('truetype'); }
-@font-face { font-family:'Horizon'; src:url('https://assets.cdn.filesafe.space/wcJWrJ0LKUsg51VQbi8P/media/69cad296de43920b8689741f.otf') format('opentype'); }
-@font-face { font-family:'TTChocBold'; src:url('https://assets.cdn.filesafe.space/wcJWrJ0LKUsg51VQbi8P/media/69cad2ce56c68df6bbc5e637.otf') format('opentype'); font-weight:bold; }
+  @font-face {
+    font-family: 'Editors Note';
+    src: url('assets/EditorsNote-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
 
-:root {
-  --cream: #f2e7de; --cream2: #edddcd; --gold: #ad9565; --gold2: #9a8968;
-  --dark: #1a1510; --dark2: #2C2824; --warm-bg: #FAF8F5;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Montserrat','DM Sans',sans-serif; background-color:var(--cream); background-image:linear-gradient(155deg,#efe1d3 0%,transparent 40%),radial-gradient(ellipse at -10% 50%,#ede0d2 0%,transparent 45%),radial-gradient(ellipse at 90% 80%,#efe3d6 0%,transparent 40%),linear-gradient(145deg,#f2e7de 0%,#ecdccc 15%,#f2e7de 25%,#efe1d3 40%,#f2e7de 50%,#edddcd 65%,#f2e7de 75%,#ecdccc 90%,#f2e7de 100%); color:var(--dark); min-height:100vh; }
+  :root {
+    --bg: #f5ebdc;            /* lighter warm cream, less orange */
+    --bg-card: #fdf9f1;
+    --bg-dark: #1a120b;
+    --ink: #2a1f14;
+    --ink-soft: #6b5d4d;
+    --ink-muted: #8a7a66;
+    --gold: #a58547;
+    --gold-soft: #c4a36a;
+    --line: rgba(42, 31, 20, 0.12);
+    --line-soft: rgba(42, 31, 20, 0.06);
+  }
 
-.top-bar { background:var(--dark); padding:12px 32px; display:flex; align-items:center; justify-content:space-between; }
-.top-bar-logo { height:36px; opacity:0.9; }
-.top-bar-login { font-family:'Montserrat',sans-serif; font-size:13px; color:var(--gold); text-decoration:none; border:1px solid rgba(173,149,101,0.4); padding:8px 22px; border-radius:6px; transition:all 0.2s; letter-spacing:0.5px; }
-.top-bar-login:hover { background:rgba(173,149,101,0.1); border-color:var(--gold); }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-.hero { text-align:center; padding:60px 24px 50px; max-width:800px; margin:0 auto; }
-.hero-badge { display:inline-block; font-size:11px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); border:1px solid rgba(173,149,101,0.3); padding:6px 18px; border-radius:20px; margin-bottom:20px; }
-.hero h1 { font-family:'EditorsNote',serif; font-size:48px; color:var(--dark); font-weight:400; letter-spacing:1px; margin-bottom:6px; }
-.hero h1 span { color:var(--gold); }
-.hero .hero-sub { font-size:15px; color:var(--gold2); margin-bottom:32px; }
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
 
-.video-wrap { max-width:680px; margin:0 auto 28px; border-radius:14px; overflow:hidden; background:var(--dark); aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; position:relative; box-shadow:0 12px 48px rgba(26,21,16,0.15); }
-.video-wrap .play-btn { width:72px; height:72px; border-radius:50%; background:rgba(173,149,101,0.2); border:2px solid rgba(173,149,101,0.5); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.25s; }
-.video-wrap .play-btn:hover { background:rgba(173,149,101,0.35); transform:scale(1.06); }
-.video-wrap .play-btn svg { margin-left:4px; }
-.video-label { position:absolute; bottom:16px; left:50%; transform:translateX(-50%); font-size:12px; color:rgba(242,231,222,0.5); letter-spacing:1px; text-transform:uppercase; }
+  /* Header */
+  header {
+    background: var(--bg-dark);
+    padding: 18px 0;
+  }
+  .nav { display: flex; justify-content: flex-start; }
+  .login-top {
+    display: inline-block;
+    padding: 10px 22px;
+    border: 1px solid rgba(255, 248, 232, 0.25);
+    color: #f5ebdc;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+  .login-top:hover { background: rgba(255, 248, 232, 0.08); border-color: rgba(255, 248, 232, 0.4); }
 
-.hero-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-.btn-primary { font-size:14px; font-weight:600; padding:13px 32px; border-radius:8px; border:none; cursor:pointer; text-decoration:none; transition:all 0.2s; letter-spacing:0.5px; }
-.btn-gold { background:linear-gradient(135deg,var(--gold),var(--gold2)); color:var(--dark); }
-.btn-gold:hover { opacity:0.88; }
-.btn-outline { background:transparent; color:var(--dark); border:1.5px solid rgba(26,21,16,0.2); }
-.btn-outline:hover { border-color:var(--gold); color:var(--gold); }
+  /* Hero */
+  .hero { padding: 80px 0 60px; text-align: center; }
+  .eyebrow {
+    display: inline-block;
+    padding: 7px 18px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    font-weight: 500;
+    margin-bottom: 28px;
+  }
+  h1 {
+    font-family: 'Editors Note', 'Playfair Display', Georgia, serif;
+    font-size: clamp(56px, 8vw, 104px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 22px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 560px;
+    margin: 0 auto 44px;
+  }
 
-.section-divider { max-width:1100px; margin:0 auto; padding:0 24px; }
-.section-divider h2 { font-family:'EditorsNote',serif; font-size:28px; font-weight:400; color:var(--dark); margin-bottom:6px; }
-.section-divider p { font-size:14px; color:var(--gold2); margin-bottom:28px; }
+  /* Video */
+  .video-wrap {
+    max-width: 940px;
+    margin: 0 auto 36px;
+    background: #0f0904;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px -25px rgba(26, 18, 11, 0.4);
+    position: relative;
+  }
+  .video-inner {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+  }
+  .video-inner iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .video-caption {
+    text-align: center;
+    padding: 18px 0 22px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 235, 220, 0.55);
+    font-weight: 500;
+  }
 
-.widgets-grid { max-width:1100px; margin:0 auto 48px; padding:0 24px; display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-@media (max-width:900px) { .widgets-grid { grid-template-columns:1fr; } }
+  .cta-row {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 12px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--gold);
+    color: #fff;
+    border-color: var(--gold);
+  }
+  .btn-primary:hover { background: #8e703a; border-color: #8e703a; }
+  .btn-outline {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .btn-outline:hover { border-color: var(--ink); }
 
-.widget-card { background:#fff; border-radius:16px; border:1px solid rgba(173,149,101,0.12); overflow:hidden; box-shadow:0 4px 24px rgba(26,21,16,0.04); transition:box-shadow 0.3s,transform 0.3s; display:flex; flex-direction:column; }
-.widget-card:hover { box-shadow:0 8px 40px rgba(26,21,16,0.08); transform:translateY(-2px); }
-.widget-header { padding:20px 24px 16px; border-bottom:1px solid rgba(173,149,101,0.08); display:flex; align-items:center; gap:12px; }
-.widget-icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.widget-icon.gold { background:linear-gradient(135deg,rgba(173,149,101,0.15),rgba(173,149,101,0.08)); }
-.widget-header-text h3 { font-family:'EditorsNote',serif; font-size:17px; font-weight:600; color:var(--dark); }
-.widget-header-text p { font-size:12px; color:var(--gold2); margin-top:2px; }
-.widget-body-full { padding:0; flex:1; }
+  /* Tools section */
+  .tools { padding: 80px 0 40px; }
+  .section-head { margin-bottom: 40px; }
+  .section-head h2 {
+    font-family: 'Editors Note', 'Playfair Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .section-head p {
+    color: var(--ink-soft);
+    font-size: 16px;
+  }
 
-.gm-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:360px; text-align:center; padding:40px 24px; }
-.gm-logo { max-width:180px; height:auto; margin-bottom:18px; border-radius:12px; }
-.gm-placeholder h4 { font-family:'EditorsNote',serif; font-size:18px; color:var(--dark); margin-bottom:8px; }
-.gm-placeholder p { font-size:13px; color:var(--gold2); max-width:280px; line-height:1.5; margin-bottom:20px; }
-.gm-open-btn { font-size:13px; font-weight:600; padding:11px 28px; border-radius:8px; border:1.5px solid var(--gold); background:transparent; color:var(--gold); cursor:pointer; transition:all 0.2s; text-decoration:none; display:inline-block; }
-.gm-open-btn:hover { background:rgba(173,149,101,0.08); }
+  /* Card grid - 2 columns */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: 1fr; }
+  }
 
-/* Commission Calculator */
-.calc-section { padding:20px 20px 24px; }
-.calc-controls { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:16px; flex-wrap:wrap; }
-.pts-ctrl { display:flex; align-items:center; background:#fff; border:1px solid #E8E2DC; border-radius:10px; overflow:hidden; height:40px; }
-.pts-btn { width:40px; height:40px; border:none; background:transparent; font-size:17px; color:var(--dark); cursor:pointer; }
-.pts-btn:hover { background:#F5F0EB; }
-.pts-display { min-width:72px; text-align:center; font-size:13px; font-weight:600; color:var(--dark); border-left:1px solid #E8E2DC; border-right:1px solid #E8E2DC; height:40px; display:flex; align-items:center; justify-content:center; padding:0 8px; }
-.cur-select { height:40px; padding:0 14px; background:#fff; border:1px solid #E8E2DC; border-radius:10px; font-size:13px; font-weight:500; color:var(--dark); cursor:pointer; outline:none; }
-.calc-tabs { display:flex; gap:3px; background:#EDE7E0; border-radius:10px; padding:3px; margin-bottom:14px; }
-.calc-tab { flex:1; padding:8px 12px; border:none; background:transparent; font-size:12px; font-weight:500; color:#8C8580; cursor:pointer; border-radius:8px; transition:all 0.2s; }
-.calc-tab.active { background:#fff; color:var(--dark); font-weight:600; box-shadow:0 1px 4px rgba(44,40,36,0.06); }
-.prod-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:18px; }
-@media (max-width:500px) { .prod-grid { grid-template-columns:1fr; } }
-.prod-card { padding:12px 14px; background:#fff; border:1.5px solid #E8E2DC; border-radius:10px; cursor:pointer; transition:all 0.15s; position:relative; }
-.prod-card:hover { border-color:#C4B8AD; }
-.prod-card.sel { border-color:#B8926A; background:linear-gradient(135deg,#FFFDF9,#FBF6EF); }
-.prod-card.sel::before { content:''; position:absolute; top:0; left:0; right:0; height:2.5px; background:linear-gradient(90deg,#B8926A,#D4B896); }
-.prod-name { font-size:13px; font-weight:600; color:var(--dark); }
-.prod-comm { font-size:11px; color:#8C8580; margin-top:2px; }
-.prod-comm strong { color:#B8926A; }
-.total-box { background:var(--dark); border-radius:14px; padding:22px 24px; color:#fff; }
-.total-lbl { font-size:11px; color:rgba(255,255,255,0.45); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:6px; }
-.total-amt { font-family:'EditorsNote',serif; font-size:36px; font-weight:600; }
-.total-breakdown { margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,0.1); }
-.bd-row { display:flex; justify-content:space-between; padding:5px 0; font-size:13px; }
-.bd-name { color:rgba(255,255,255,0.6); }
-.bd-amt { color:#D4B896; font-weight:600; }
-.empty-msg { text-align:center; padding:12px 0; color:rgba(255,255,255,0.3); font-size:13px; font-style:italic; }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-header {
+    padding: 22px 26px;
+    border-bottom: 1px solid var(--line-soft);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(165, 133, 71, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+  .card-icon svg { width: 22px; height: 22px; stroke-width: 1.6; }
+  .card-header h3 {
+    font-family: 'Editors Note', 'Playfair Display', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    margin-bottom: 3px;
+  }
+  .card-header .tag {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
 
-/* Elevate Studio */
-.los-section { max-width:1100px; margin:0 auto 60px; padding:0 24px; }
-.los-card { background:var(--dark); border-radius:20px; padding:48px; display:flex; align-items:center; gap:40px; flex-wrap:wrap; position:relative; overflow:hidden; }
-.los-card::before { content:''; position:absolute; top:-40%; right:-10%; width:400px; height:400px; background:radial-gradient(circle,rgba(173,149,101,0.1),transparent 70%); pointer-events:none; }
-.los-video { flex:1; min-width:280px; aspect-ratio:16/9; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center; }
-.los-video .play-btn-sm { width:56px; height:56px; border-radius:50%; background:rgba(173,149,101,0.2); border:2px solid rgba(173,149,101,0.4); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s; }
-.los-video .play-btn-sm:hover { background:rgba(173,149,101,0.3); transform:scale(1.05); }
-.los-video .play-btn-sm svg { margin-left:3px; }
-.los-text { flex:1; min-width:280px; position:relative; z-index:1; }
-.los-text .los-badge { display:inline-block; font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
-.los-text h3 { font-family:'EditorsNote',serif; font-size:32px; font-weight:400; color:#fff; margin-bottom:8px; }
-.los-text .los-price { font-family:'EditorsNote',serif; font-size:22px; color:var(--gold); margin-bottom:14px; }
-.los-text p { font-size:14px; color:rgba(255,255,255,0.55); line-height:1.6; margin-bottom:22px; max-width:360px; }
-.los-btn { display:inline-block; font-size:14px; font-weight:600; padding:13px 36px; border-radius:8px; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:var(--dark); text-decoration:none; border:none; cursor:pointer; transition:opacity 0.2s; letter-spacing:0.5px; }
-.los-btn:hover { opacity:0.88; }
+  .card-body {
+    padding: 40px 32px 36px;
+    text-align: center;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-body .hero-img {
+    width: 92%;
+    max-width: 460px;
+    margin: 0 auto 28px;
+    display: block;
+  }
+  .card-body h4 {
+    font-family: 'Editors Note', 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 14px;
+  }
+  .card-body p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    max-width: 380px;
+    margin: 0 auto 26px;
+  }
+  .card-cta {
+    display: inline-block;
+    padding: 13px 28px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  .card-cta:hover { background: var(--gold); color: #fff; }
+  .card-cta.disabled {
+    color: var(--ink-muted);
+    border-color: var(--line);
+    cursor: not-allowed;
+  }
+  .card-cta.disabled:hover { background: transparent; color: var(--ink-muted); }
 
-.portal-footer { text-align:center; padding:24px; font-size:12px; color:var(--gold2); border-top:1px solid rgba(173,149,101,0.1); }
+  /* Commission calculator */
+  .calc-body { padding: 26px 26px 28px; }
+  .calc-top {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .points {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+  }
+  .points button {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: transparent;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+  }
+  .points button:hover { background: var(--bg); }
+  .points span { font-size: 14px; font-weight: 500; }
+  .currency {
+    padding: 10px 16px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    background: #fff;
+  }
+  .tab {
+    padding: 12px;
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+  .tab.active { color: var(--ink); background: var(--bg-card); border-bottom: 2px solid var(--gold); }
+
+  .products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .product {
+    padding: 12px 14px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .product:hover { border-color: var(--gold); }
+  .product.selected { border-color: var(--gold); background: rgba(165, 133, 71, 0.06); }
+  .product-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+  .product-price { font-size: 12px; color: var(--ink-muted); }
+  .product-price strong { color: var(--gold); font-weight: 600; }
+
+  .total {
+    background: var(--bg-dark);
+    color: #f5ebdc;
+    border-radius: 10px;
+    padding: 20px 22px;
+  }
+  .total-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245, 235, 220, 0.5);
+    margin-bottom: 6px;
+  }
+  .total-amount {
+    font-family: 'Editors Note', 'Playfair Display', Georgia, serif;
+    font-size: 40px;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .total-hint {
+    font-size: 12px;
+    font-style: italic;
+    color: rgba(245, 235, 220, 0.45);
+  }
+
+  /* Elevate */
+  .elevate {
+    margin: 80px 0 100px;
+    background: var(--bg-dark);
+    color: #f5ebdc;
+    border-radius: 16px;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  @media (max-width: 860px) {
+    .elevate { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; }
+  }
+  .elevate-video {
+    aspect-ratio: 4/3;
+    background: #0a0604;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .play-btn {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    background: rgba(165, 133, 71, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .play-btn:hover { background: var(--gold); transform: scale(1.05); }
+  .play-btn::after {
+    content: '';
+    border-left: 16px solid #fff;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    margin-left: 4px;
+  }
+  .elevate .eyebrow {
+    background: transparent;
+    border-color: rgba(165, 133, 71, 0.4);
+    color: var(--gold-soft);
+    margin-bottom: 20px;
+  }
+  .elevate h2 {
+    font-family: 'Editors Note', 'Playfair Display', Georgia, serif;
+    font-size: 52px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .elevate .price {
+    font-family: 'Editors Note', 'Playfair Display', Georgia, serif;
+    font-size: 36px;
+    color: var(--gold-soft);
+    margin-bottom: 8px;
+  }
+  .elevate .price-note {
+    font-size: 13px;
+    color: rgba(245, 235, 220, 0.5);
+    margin-bottom: 22px;
+  }
+  .elevate p.desc {
+    color: rgba(245, 235, 220, 0.75);
+    margin-bottom: 28px;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .elevate .btn-primary { background: var(--gold); border-color: var(--gold); }
+  .elevate .btn-primary:hover { background: #c4a36a; border-color: #c4a36a; }
+
+  /* Footer */
+  footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    color: var(--ink-muted);
+    font-size: 13px;
+  }
 </style>
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div class="top-bar">
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAC4CAYAAADNN7ojAAAA" alt="Ignite Legacy" class="top-bar-logo" onerror="this.style.display='none'">
-  <a href="https://ignitelegacy.co/" class="top-bar-login" target="_blank">Login to Ignite Legacy</a>
-</div>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">Reseller's Portal</div>
-  <h1>Ignite <span>Legacy</span></h1>
-  <p class="hero-sub">Your tools, resources, and community hub as an Ignite Legacy reseller.</p>
-  <div class="video-wrap">
-    <div class="play-btn"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M8 5.14v14.72a1 1 0 001.52.86l11-7.36a1 1 0 000-1.72l-11-7.36A1 1 0 008 5.14z" fill="#ad9565"/></svg></div>
-    <div class="video-label">Ignite Legacy Reseller Walkthrough</div>
+<header>
+  <div class="container nav">
+    <a href="https://ignitelegacy.co/" class="login-top">Login to Ignite Legacy</a>
   </div>
-  <div class="hero-actions">
-    <a href="https://ignitelegacy.co/" class="btn-primary btn-gold" target="_blank">Login to Ignite Legacy</a>
-    <a href="#tools" class="btn-primary btn-outline">Explore Tools ↓</a>
-  </div>
-</div>
+</header>
 
-<!-- TOOLS SECTION -->
-<div class="section-divider" id="tools">
-  <h2>Reseller Tools</h2>
-  <p>Everything you need to grow your Ignite Legacy business.</p>
-</div>
+<main>
+  <section class="hero container">
+    <div class="eyebrow">Reseller's Portal</div>
+    <h1>Ignite <em>Legacy</em></h1>
+    <p class="hero-sub">Your tools, resources, and community hub as an Ignite Legacy reseller.</p>
 
-<div class="widgets-grid">
-
-  <!-- WIDGET 1: Graphic Maker -->
-  <div class="widget-card">
-    <div class="widget-header">
-      <div class="widget-icon gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ad9565" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
-      <div class="widget-header-text"><h3>Graphic Maker</h3><p>Welcome &amp; celebration graphics</p></div>
-    </div>
-    <div class="widget-body-full">
-      <div class="gm-placeholder">
-        <img src="https://assets.cdn.filesafe.space/wcJWrJ0LKUsg51VQbi8P/media/69dc22d8b30bc52371363282.png" alt="Ignite Legacy Graphic Maker" class="gm-logo">
-        <h4>Ignite Legacy Graphic Maker</h4>
-        <p>Create custom welcome and celebration graphics for your team with brand-matched templates.</p>
-        <a href="https://portal.ignitelegacy.co/graphic-maker" class="gm-open-btn" target="_blank">Open Graphic Maker →</a>
+    <div class="video-wrap">
+      <div class="video-inner">
+        <iframe src="https://player.vimeo.com/video/1183234152?h=e8d92a9818" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Ignite Legacy Reseller Walkthrough"></iframe>
       </div>
+      <div class="video-caption">Ignite Legacy Reseller Walkthrough</div>
     </div>
-  </div>
 
-  <!-- WIDGET 2: Commissions Calculator -->
-  <div class="widget-card">
-    <div class="widget-header">
-      <div class="widget-icon gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ad9565" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-      <div class="widget-header-text"><h3>Commission Calculator</h3><p>Estimate your Enagic earnings</p></div>
+    <div class="cta-row">
+      <a href="https://ignitelegacy.co/" class="btn btn-primary">Login to Ignite Legacy</a>
+      <a href="#tools" class="btn btn-outline">Explore Tools ↓</a>
     </div>
-    <div class="widget-body-full">
-      <div class="calc-section" id="calcRoot"></div>
-    </div>
-  </div>
+  </section>
 
-  <!-- WIDGET 3: Testimonial Vault -->
-  <div class="widget-card">
-    <div class="widget-header">
-      <div class="widget-icon gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ad9565" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-      <div class="widget-header-text"><h3>Testimonial Vault</h3><p>Real stories from the community</p></div>
+  <section class="tools container" id="tools">
+    <div class="section-head">
+      <h2>Reseller Tools</h2>
+      <p>Everything you need to grow your Ignite Legacy business.</p>
     </div>
-    <div class="widget-body-full">
-      <div class="gm-placeholder">
-        <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,rgba(173,149,101,0.12),rgba(173,149,101,0.04));display:flex;align-items:center;justify-content:center;margin-bottom:18px">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ad9565" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><path d="M8 9h8M8 13h6" stroke-linecap="round"/></svg>
+
+    <div class="grid">
+      <!-- Graphic Maker -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg>
+          </div>
+          <div>
+            <h3>Graphic Maker</h3>
+            <div class="tag">Welcome &amp; celebration graphics</div>
+          </div>
         </div>
-        <h4>The Testimonial Vault</h4>
-        <p>Browse, filter, and download real video testimonials from the community — organized by category so you can pull them into webinars, reels, and conversations.</p>
-        <a href="https://thetestimonialvault.com" class="gm-open-btn" target="_blank">Open Testimonial Vault →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- WIDGET 4: Elevate Studio (placeholder for future tools) -->
-  <div class="widget-card">
-    <div class="widget-header">
-      <div class="widget-icon gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ad9565" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-linejoin="round" stroke-linecap="round"/></svg></div>
-      <div class="widget-header-text"><h3>AI Coach</h3><p>Get help with messaging &amp; strategy</p></div>
-    </div>
-    <div class="widget-body-full">
-      <div class="gm-placeholder">
-        <div style="width:64px;height:64px;border-radius:16px;background:linear-gradient(135deg,rgba(173,149,101,0.12),rgba(173,149,101,0.04));display:flex;align-items:center;justify-content:center;margin-bottom:18px">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ad9565" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/><circle cx="8" cy="10" r="1" fill="#ad9565"/><circle cx="12" cy="10" r="1" fill="#ad9565"/><circle cx="16" cy="10" r="1" fill="#ad9565"/></svg>
+        <div class="card-body">
+          <img class="hero-img" src="assets/graphic-maker.png" alt="Ignite Legacy Graphic Maker samples" />
+          <h4>Ignite Legacy Graphic Maker</h4>
+          <p>Create custom welcome and celebration graphics for your team with brand-matched templates.</p>
+          <a href="https://portal.ignitelegacy.co/graphic-maker" class="card-cta">Open Graphic Maker →</a>
         </div>
-        <h4>Ignite AI Coach</h4>
-        <p>Your personal AI assistant for content ideas, messaging, objection handling, and business strategy — trained on Ignite Legacy.</p>
-        <a href="#" class="gm-open-btn" style="opacity:0.5;pointer-events:none">Coming Soon</a>
+      </article>
+
+      <!-- Commission Calculator -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div>
+            <h3>Commission Calculator</h3>
+            <div class="tag">Estimate your Enagic earnings</div>
+          </div>
+        </div>
+        <div class="calc-body">
+          <div class="calc-top">
+            <div class="points">
+              <button onclick="changePoints(-1)">−</button>
+              <span id="points-display">1 point</span>
+              <button onclick="changePoints(1)">+</button>
+            </div>
+            <select class="currency" id="currency">
+              <option value="USD">$ USD</option>
+              <option value="EUR">€ EUR</option>
+              <option value="GBP">£ GBP</option>
+            </select>
+          </div>
+          <div class="tabs">
+            <button class="tab active" onclick="switchTab('individual', this)">Individual Products</button>
+            <button class="tab" onclick="switchTab('packages', this)">Product Packages</button>
+          </div>
+          <div class="products" id="products">
+            <div class="product" data-price="351" onclick="selectProduct(this)">
+              <div class="product-name">K8</div>
+              <div class="product-price"><strong>$351</strong> at 1pt</div>
+            </div>
+            <div class="product" data-price="195" onclick="selectProduct(this)">
+              <div class="product-name">Anespa</div>
+              <div class="product-price"><strong>$195</strong> at 1pt</div>
+            </div>
+            <div class="product" data-price="40" onclick="selectProduct(this)">
+              <div class="product-name">Ukon DD</div>
+              <div class="product-price"><strong>$40</strong> at 1pt</div>
+            </div>
+            <div class="product" data-price="115" onclick="selectProduct(this)">
+              <div class="product-name">Ukon Σ</div>
+              <div class="product-price"><strong>$115</strong> at 1pt</div>
+            </div>
+            <div class="product" data-price="290" onclick="selectProduct(this)">
+              <div class="product-name">SD501</div>
+              <div class="product-price"><strong>$290</strong> at 1pt</div>
+            </div>
+            <div class="product" data-price="420" onclick="selectProduct(this)">
+              <div class="product-name">Super 501</div>
+              <div class="product-price"><strong>$420</strong> at 1pt</div>
+            </div>
+            <div class="product" data-price="200" onclick="selectProduct(this)">
+              <div class="product-name">JRIV</div>
+              <div class="product-price"><strong>$200</strong> at 1pt</div>
+            </div>
+            <div class="product" data-price="320" onclick="selectProduct(this)">
+              <div class="product-name">SD501U</div>
+              <div class="product-price"><strong>$320</strong> at 1pt</div>
+            </div>
+            <div class="product" data-price="78" onclick="selectProduct(this)">
+              <div class="product-name">EmGuard</div>
+              <div class="product-price"><strong>$78</strong> at 1pt</div>
+            </div>
+          </div>
+          <div class="total">
+            <div class="total-label">Total Commission</div>
+            <div class="total-amount" id="total">$0</div>
+            <div class="total-hint" id="total-hint">Select products above to see breakdown</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Masterclass Vault -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div>
+            <h3>Masterclass Vault</h3>
+            <div class="tag">Share Ignite Legacy</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h4>The Masterclass Vault</h4>
+          <p>Find a masterclass to share Ignite Legacy with your audience and prospects.</p>
+          <a href="https://www.themasterclassvault.com" class="card-cta">Open Masterclass Vault →</a>
+        </div>
+      </article>
+
+      <!-- Testimonial Vault -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <h3>Testimonial Vault</h3>
+            <div class="tag">Real stories from the community</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h4>The Testimonial Vault</h4>
+          <p>Get inspired and use real video testimonials from the community — organized by category so you can pull them into webinars, reels, and conversations.</p>
+          <a href="https://www.thetestimonialvault.com" class="card-cta">Open Testimonial Vault →</a>
+        </div>
+      </article>
+
+      <!-- Clarity Coach Vault -->
+      <article class="card">
+        <div class="card-header">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <div>
+            <h3>Clarity Coach Vault</h3>
+            <div class="tag">Hire a clarity coach</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h4>The Clarity Coach Vault</h4>
+          <p>Hire a clarity coach to help you refine your messaging, strategy, and next steps in your business.</p>
+          <a href="https://www.theclaritycoachvault.com" class="card-cta">Open Clarity Coach Vault →</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="elevate">
+      <div class="elevate-video">
+        <div class="play-btn"></div>
+      </div>
+      <div>
+        <div class="eyebrow">Elevate Your Business</div>
+        <h2>Elevate Studio</h2>
+        <div class="price">+$49/month</div>
+        <div class="price-note">Ignite + Elevate Studio = $98/month</div>
+        <p class="desc">Your all-in-one funnel builder, email marketing, automation engine, and CRM — for resellers who want to build with systems and scale with webinars.</p>
+        <a href="https://elevatestud.io/" class="btn btn-primary">Get Started →</a>
       </div>
     </div>
-  </div>
+  </section>
+</main>
 
-</div>
+<footer>
+  <div class="container">© 2025 Ignite Legacy · Built by Aubrey V Lynn</div>
+</footer>
 
-<!-- ELEVATE STUDIO SECTION -->
-<div class="los-section">
-  <div class="los-card">
-    <div class="los-video">
-      <div class="play-btn-sm"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5.14v14.72a1 1 0 001.52.86l11-7.36a1 1 0 000-1.72l-11-7.36A1 1 0 008 5.14z" fill="#ad9565"/></svg></div>
-    </div>
-    <div class="los-text">
-      <div class="los-badge">Elevate Your Business</div>
-      <h3>Elevate Studio</h3>
-      <div class="los-price">+$49/month</div>
-      <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:6px;">Ignite + Elevate Studio = $98/month</p>
-      <p>Your all-in-one funnel builder, email marketing, automation engine, and CRM — for resellers who want to build with systems and scale with webinars.</p>
-      <a href="https://elevatestud.io/" class="los-btn" target="_blank">Get Started →</a>
-    </div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div class="portal-footer">© 2025 Ignite Legacy · Built by Aubrey V Lynn</div>
-
-<!-- COMMISSIONS CALCULATOR -->
 <script>
-const DATA={USD:{symbol:"$",products:[{name:"K8",c:[351,702,1053,1404,1755,2106,2457,2808]},{name:"Anespa",c:[195,390,585,780,975,1170,1365,1560]},{name:"Ukon DD",c:[40,80,120,160,200,240,280,320]},{name:"Ukon Σ",c:[115,230,345,460,575,690,805,920]},{name:"SD501",c:[290,580,870,1160,1450,1740,2030,2320]},{name:"Super 501",c:[420,840,1260,1680,2100,2520,2940,3360]},{name:"JRIV",c:[200,400,600,800,1000,1200,1400,1600]},{name:"SD501U",c:[320,640,960,1280,1600,1920,2240,2560]},{name:"EmGuard",c:[78,156,234,312,390,468,546,624]}],packages:[{name:"Trifecta",c:[661,1322,1983,2644,3305,3966,4627,4822]},{name:"Quad",c:[739,1478,2217,2956,3695,4434,5058,5253]},{name:"Anespa Quad",c:[856,1712,2568,3424,4280,5136,5877,6072]},{name:"K8 Quad",c:[1012,2024,3036,4048,5060,6072,6969,7164]},{name:"The Suite",c:[1090,2180,3270,4360,5450,6189,6813,7008]}]},CAD:{symbol:"C$",products:[{name:"K8",c:[390,780,1170,1560,1950,2340,2730,3120]},{name:"Anespa",c:[220,440,660,880,1100,1320,1540,1760]},{name:"Ukon DD",c:[50,100,150,200,250,300,350,400]},{name:"Ukon Σ",c:[130,260,390,520,650,780,910,1040]},{name:"SD501",c:[330,660,990,1320,1650,1980,2310,2640]},{name:"JRIV",c:[250,500,750,1000,1250,1500,1750,2000]},{name:"Super 501",c:[440,880,1320,1760,2200,2640,3080,3520]},{name:"EmGuard",c:[89,178,267,356,445,534,623,712]}],packages:[{name:"Trifecta",c:[740,1480,2220,2960,3700,4440,5180,5400]},{name:"Quad",c:[829,1658,2487,3316,4145,4974,5673,5893]},{name:"Anespa Quad",c:[960,1920,2880,3840,4800,5760,6590,6810]},{name:"K8 Quad",c:[1130,2260,3390,4520,5650,6780,7780,8000]},{name:"The Suite",c:[1219,2438,3657,4876,6095,6924,7623,7843]}]},AUD:{symbol:"A$",products:[{name:"K8",c:[400,800,1200,1600,2000,2400,2800,3200]},{name:"Anespa",c:[190,380,570,760,950,1140,1330,1520]},{name:"Ukon DD",c:[58,116,174,232,290,348,406,464]},{name:"SD501",c:[310,620,930,1240,1550,1860,2170,2480]},{name:"JRIV",c:[265,530,795,1060,1325,1590,1855,2120]},{name:"Super 501",c:[440,880,1320,1760,2200,2640,3080,3520]},{name:"EmGuard",c:[134,268,402,536,670,804,938,1072]},{name:"Kangen Air",c:[100,200,300,400,500,600,700,800]}],packages:[{name:"Trifecta",c:[648,1296,1944,2592,3240,3888,4536,4726]},{name:"Quad",c:[782,1564,2346,3128,3910,4692,5416,5606]},{name:"Anespa Quad",c:[838,1676,2514,3352,4190,5028,5808,5998]},{name:"K8 Quad",c:[1048,2096,3144,4192,5240,6288,7278,7468]},{name:"The Suite",c:[1182,2364,3546,4728,5910,6692,7416,7606]}]},NZD:{symbol:"NZ$",products:[{name:"K8",c:[430,860,1290,1720,2150,2580,3010,3440]},{name:"Anespa",c:[200,400,600,800,1000,1200,1400,1600]},{name:"Ukon DD",c:[65,130,195,260,325,390,455,520]},{name:"SD501",c:[333,666,999,1332,1665,1998,2331,2664]},{name:"JRIV",c:[275,550,825,1100,1375,1650,1925,2200]},{name:"Super 501",c:[470,940,1410,1880,2350,2820,3290,3760]}],packages:[{name:"Trifecta",c:[695,1390,2085,2780,3475,4170,4865,5065]},{name:"Anespa Quad",c:[895,1790,2685,3580,4475,5370,6200,6400]},{name:"K8 Quad",c:[1125,2250,3375,4500,5625,6750,7810,8010]}]},EUR:{symbol:"€",products:[{name:"K8",c:[285,570,855,1140,1425,1710,1995,2280]},{name:"Anespa",c:[155,310,465,620,775,930,1085,1240]},{name:"Ukon DD",c:[35,70,105,140,175,210,245,280]},{name:"Ukon Σ",c:[90,180,270,360,450,540,630,720]},{name:"SD501",c:[205,410,615,820,1025,1230,1435,1640]},{name:"Super 501",c:[420,840,1260,1680,2100,2520,2940,3360]},{name:"JRIV",c:[157,314,471,628,785,942,1099,1256]},{name:"EmGuard",c:[80,160,240,320,400,480,560,640]}],packages:[{name:"Trifecta",c:[530,1060,1590,2120,2650,3180,3710,3865]},{name:"Quad",c:[610,1220,1830,2440,3050,3660,4180,4335]},{name:"Anespa Quad",c:[685,1370,2055,2740,3425,4110,4705,4860]},{name:"K8 Quad",c:[815,1630,2445,3260,4075,4890,5615,5770]},{name:"The Suite",c:[895,1790,2685,3580,4475,5085,5605,5760]}]}};
-let calcState={currency:'USD',points:1,tab:'products',selected:[]};
-const fmt=v=>v.toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:0});
-const getC=(item,pts)=>item.c[Math.min(pts,8)-1];
-function renderCalc(){const s=calcState,cur=DATA[s.currency],items=s.tab==='products'?cur.products:cur.packages,total=s.selected.reduce((sum,it)=>sum+getC(it,s.points),0);let html=`<div class="calc-controls"><div class="pts-ctrl"><button class="pts-btn" onclick="calcPts(-1)">−</button><div class="pts-display">${s.points} ${s.points===1?'point':'points'}</div><button class="pts-btn" onclick="calcPts(1)">+</button></div><select class="cur-select" onchange="calcCur(this.value)">${Object.keys(DATA).map(c=>`<option value="${c}" ${c===s.currency?'selected':''}>${DATA[c].symbol} ${c}</option>`).join('')}</select></div><div class="calc-tabs"><button class="calc-tab ${s.tab==='products'?'active':''}" onclick="calcTab('products')">Individual Products</button><button class="calc-tab ${s.tab==='packages'?'active':''}" onclick="calcTab('packages')">Product Packages</button></div><div class="prod-grid">${items.map(it=>{const sel=s.selected.find(x=>x.name===it.name);return`<div class="prod-card ${sel?'sel':''}" onclick="calcToggle('${it.name}')"><div class="prod-name">${it.name}</div><div class="prod-comm"><strong>${cur.symbol}${fmt(getC(it,s.points))}</strong> at ${s.points}pt</div></div>`;}).join('')}</div><div class="total-box"><div class="total-lbl">Total Commission</div><div class="total-amt">${cur.symbol}${fmt(total)}</div>${s.selected.length?`<div class="total-breakdown">${s.selected.map(it=>`<div class="bd-row"><span class="bd-name">${it.name}</span><span class="bd-amt">${cur.symbol}${fmt(getC(it,s.points))}</span></div>`).join('')}</div>`:'<div class="empty-msg">Select products above to see breakdown</div>'}</div>`;document.getElementById('calcRoot').innerHTML=html;}
-function calcPts(d){calcState.points=Math.max(1,Math.min(8,calcState.points+d));renderCalc();}
-function calcCur(c){calcState.currency=c;const cur=DATA[c],names=[...cur.products.map(p=>p.name),...cur.packages.map(p=>p.name)];calcState.selected=calcState.selected.filter(i=>names.includes(i.name));renderCalc();}
-function calcTab(t){calcState.tab=t;renderCalc();}
-function calcToggle(name){const cur=DATA[calcState.currency],items=calcState.tab==='products'?cur.products:cur.packages,item=items.find(i=>i.name===name);if(!item)return;const idx=calcState.selected.findIndex(i=>i.name===name);if(idx>=0)calcState.selected.splice(idx,1);else calcState.selected.push(item);renderCalc();}
-renderCalc();
+  let points = 1;
+  let selected = [];
+
+  function changePoints(delta) {
+    points = Math.max(1, points + delta);
+    document.getElementById('points-display').textContent = points + (points === 1 ? ' point' : ' points');
+    updateTotal();
+  }
+
+  function selectProduct(el) {
+    el.classList.toggle('selected');
+    const price = parseFloat(el.dataset.price);
+    if (el.classList.contains('selected')) {
+      selected.push(price);
+    } else {
+      const i = selected.indexOf(price);
+      if (i > -1) selected.splice(i, 1);
+    }
+    updateTotal();
+  }
+
+  function updateTotal() {
+    const sum = selected.reduce((a, b) => a + b, 0) * points;
+    const symbol = document.getElementById('currency').value === 'EUR' ? '€' : document.getElementById('currency').value === 'GBP' ? '£' : '$';
+    document.getElementById('total').textContent = symbol + sum.toLocaleString();
+    document.getElementById('total-hint').textContent = selected.length === 0 ? 'Select products above to see breakdown' : selected.length + ' product' + (selected.length === 1 ? '' : 's') + ' selected';
+  }
+
+  function switchTab(which, btn) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+  }
+
+  document.getElementById('currency').addEventListener('change', updateTotal);
 </script>
+
 </body>
 </html>
